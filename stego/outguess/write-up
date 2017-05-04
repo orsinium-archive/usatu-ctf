@@ -1,0 +1,4 @@
+file file
+mv file file.jpg
+strings file.jpg
+outguess -k 'itisnotwhatdoyouthink' -r file.jpg flag.txt

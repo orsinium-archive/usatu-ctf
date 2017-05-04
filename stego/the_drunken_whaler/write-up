@@ -1,0 +1,9 @@
+file file
+xz -dc < file > file2
+file file2
+tar -vxzf file2
+
+[open in audacity]
+[effect > reverse]
+[effect > speed]
+[make max speed]

@@ -1,0 +1,1 @@
+strings apple.jpg | grep 'flag'

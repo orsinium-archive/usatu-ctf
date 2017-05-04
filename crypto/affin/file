@@ -1,0 +1,7 @@
+def hash1(n):
+	ret = [0]*len(n)
+	for i in range(len(n)):
+		ret[i] += ord(n[i])*(i+1)
+	return "".join([chr(i%29 + 97) for i in ret])
+
+print(hash1(flag))

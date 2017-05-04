@@ -1,0 +1,41 @@
+Собственно по нему ты и так знаешь, я write-up скидывал.
+Но ещё раз чтобы вместе с остальными было.
+
+Категория: pwn 
+
+Некоторые называют лень двигателем прогресса. Посмотрим насколько Вы выносливы, а заодно пройдемся по математическим способностям.
+Адрес сервера - xxx.xxx.xxx.xxx и порт - 8000. Нужен ключ. Как Вы его получите?
+
+Подсказка: Автоматизируйте процесс. Сервер вычисляет ответ во float и округляет до сотых. 
+1 = 1.00
+1.12 = 1.12
+1.124 = 1.12
+1.125 = 1.13
+
+Цена: 250
+
+Write-up для изначального варианта задания (сравнение float, округленных до сотых)
+
+
+import socket
+import time
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect(('xxx.xxx.xxx.xxx', 8000), )
+
+number_of_bytes = sock.recv(1024)
+print('Received {}'.format(number_of_bytes.decode('utf-8')))
+sock.send(b'y')
+
+while 1:
+    # time.sleep(1)
+    print('Receiving')
+    res = sock.recv(1024)
+    data_rec = (res.decode('utf-8')).strip()
+    print('got {} '.format(data_rec))
+    answer_float = eval(data_rec)
+    print('1)answer is {}'.format(answer_float))
+    answer = '{0:.2f}'.format(answer_float)
+    print('2)answer is {}'.format(answer))
+    print('========================')
+    sock.send(answer.encode('utf-8'))

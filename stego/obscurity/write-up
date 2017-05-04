@@ -1,0 +1,2 @@
+pdftotext file.pdf
+strings file.txt
